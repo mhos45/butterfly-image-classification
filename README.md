@@ -15,7 +15,7 @@
 <br/>
 
 > **Upload a butterfly photo → Get the species name + confidence instantly.**
-> Built with 5 pretrained CNN models, fine-tuned on real butterfly data, and deployed as a Flask web app.
+> Built with 5 pretrained CNN models and the best model is chosen to predict the final butterfly class based on the 5 models used and deployed as a Flask web app.
 
 </div>
 
@@ -72,35 +72,9 @@ Five state-of-the-art CNN architectures were trained using a **two-phase transfe
 
 The model with the **highest validation accuracy** is automatically saved and used in the web app.
 
----
 
-## 🔁 Training Strategy
-
-```
-Phase 1 — Head Training                    Phase 2 — Fine Tuning
-─────────────────────────────              ──────────────────────────────
-  Backbone weights → FROZEN                  Top N layers → UNFROZEN
-  LR = 1e-3 (Adam)                           LR = 1e-5 (Adam)
-  Train custom head only:                    Backbone adapts to butterflies
-    GlobalAveragePooling2D                   EarlyStopping (patience=5)
-    BatchNormalization                       ReduceLROnPlateau
-    Dropout (0.4)
-    Dense (512, ReLU)
-    BatchNormalization
-    Dropout (0.3)
-    Dense (NUM_CLASSES, Softmax)
-```
-
-### 🔄 Data Augmentation Applied
-```
-rotation ±20°  |  width/height shift 10%  |  shear 10%  |  zoom 20%  |  horizontal flip
-```
-
----
 
 ## 📊 Evaluation Metrics
-
-After training, each model was evaluated on a **held-out validation set (15%)** using:
 
 <div align="center">
 
