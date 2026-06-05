@@ -60,14 +60,13 @@ Five state-of-the-art CNN architectures were trained using a **two-phase transfe
 
 <div align="center">
 
-| # | Model || Strength |
-|:---:|:---|:---:|:---:|:---|
-| 1 | ⚡ EfficientNetB3 || Best accuracy / efficiency balance |
-| 2 | 🔷 ResNet50V2 || Strong residual feature extraction |
-| 3 | 📱 MobileNetV3Large || Lightweight and fast |
-| 4 | 🌿 DenseNet121 || Dense connections, less overfitting |
-| 5 | 🎯 InceptionV3 || Multi-scale feature extraction |
-
+| # | Model | Strength |
+|:---:|:---|:---|
+| 1 | ⚡ EfficientNetB3 | Best accuracy / efficiency balance |
+| 2 | 🔷 ResNet50V2 | Strong residual feature extraction |
+| 3 | 📱 MobileNetV3Large | Lightweight and fast |
+| 4 | 🌿 DenseNet121 | Dense connections, less overfitting |
+| 5 | 🎯 InceptionV3 | Multi-scale feature extraction |
 </div>
 
 The model with the **highest validation accuracy** is automatically saved and used in the web app.
