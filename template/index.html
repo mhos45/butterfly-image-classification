@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Butterfly Classifier</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+        }
+
+        .form-container {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            width: 360px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 6px;
+            font-size: 22px;
+            color: #1a1a2e;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        
+        .drop-zone {
+            border: 2px dashed #c77dff;
+            border-radius: 10px;
+            padding: 28px 16px;
+            cursor: pointer;
+            background: #faf5ff;
+            transition: background 0.2s, border-color 0.2s;
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .drop-zone:hover, .drop-zone.dragover {
+            background: #f0e6ff;
+            border-color: #cc2a7b;
+        }
+
+        .drop-zone input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        .drop-zone .icon { font-size: 40px; }
+
+        .drop-zone .label {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .drop-zone .filename {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #7b2ff7;
+            font-weight: bold;
+            min-height: 16px;
+        }
+
+        
+        #preview {
+            display: none;
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            border: 1px solid #e0d0ff;
+        }
+
+        
+        button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #c9347a, #63606e);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 0.4px;
+            transition: opacity 0.2s;
+        }
+
+        button:hover { opacity: 0.88; }
+
+        
+        .result {
+            margin-top: 22px;
+            padding: 14px;
+            border-radius: 10px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .result.error {
+            background: #f1f1f0;
+            border-color: #bdb5ab;
+            color: #b11a60;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>🦋 Butterfly Classifier 🦋</h2>
+    <p class="subtitle">Upload a butterfly photo to identify its species</p>
+
+    <form action="/predict" method="post" enctype="multipart/form-data">
+
+        <div class="drop-zone" id="dropZone">
+            <input type="file" name="image" id="imageInput"
+                   accept="image/*" required onchange="previewImage(event)">
+            <div class="icon">📷</div>
+            <div class="label">Click or drag &amp; drop an image here</div>
+            <div class="filename" id="fileName">No file chosen</div>
+        </div>
+
+        <img id="preview" src="#" alt="Preview">
+
+        <button type="submit">🔍 Classify Butterfly</button>
+    </form>
+
+    {% if predicted_text %}
+    <div class="result {% if '⚠️' in predicted_text %}error{% endif %}">
+        {{ predicted_text }}
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    function previewImage(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        document.getElementById('fileName').textContent = file.name;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const preview = document.getElementById('preview');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+
+    
+    const dropZone = document.getElementById('dropZone');
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+    dropZone.addEventListener('drop', e => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        const dt = e.dataTransfer;
+        if (dt.files.length) {
+            document.getElementById('imageInput').files = dt.files;
+            previewImage({ target: { files: dt.files } });
+        }
+    });
+</script>
+</body>
+</html>
