@@ -60,7 +60,7 @@ Five state-of-the-art CNN architectures were trained using a **two-phase transfe
 
 <div align="center">
 
-| # | Model | Input Size | Fine-tuned Layers | Strength |
+| # | Model || Strength |
 |:---:|:---|:---:|:---:|:---|
 | 1 | ⚡ EfficientNetB3 || Best accuracy / efficiency balance |
 | 2 | 🔷 ResNet50V2 || Strong residual feature extraction |
