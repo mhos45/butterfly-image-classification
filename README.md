@@ -56,8 +56,6 @@
 
 ## 🧠 Models Trained & Compared
 
-Five state-of-the-art CNN architectures were trained using a **two-phase transfer learning** strategy and compared head-to-head on validation accuracy:
-
 <div align="center">
 
 | # | Model | Strength |
@@ -68,8 +66,6 @@ Five state-of-the-art CNN architectures were trained using a **two-phase transfe
 | 4 | 🌿 DenseNet121 | Dense connections, less overfitting |
 | 5 | 🎯 InceptionV3 | Multi-scale feature extraction |
 </div>
-
-The model with the **highest validation accuracy** is automatically saved and used in the web app.
 
 
 
