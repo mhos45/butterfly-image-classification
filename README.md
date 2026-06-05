@@ -27,7 +27,7 @@
 
 | Upload Screen | Prediction Result |
 |:---:|:---:|
-| 📷 Drag & drop any butterfly image | 🦋 **DANAID EGGFLY** — 86.3% confidence |
+| 📷 Drag & drop any butterfly image | 🦋 **BANDED ORANGE HELICONIAN ** — 99.9%  confidence |
 
 </div>
 
