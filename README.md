@@ -62,11 +62,11 @@ Five state-of-the-art CNN architectures were trained using a **two-phase transfe
 
 | # | Model | Input Size | Fine-tuned Layers | Strength |
 |:---:|:---|:---:|:---:|:---|
-| 1 | ⚡ EfficientNetB3 | 224 × 224 | Top 40 | Best accuracy / efficiency balance |
-| 2 | 🔷 ResNet50V2 | 224 × 224 | Top 40 | Strong residual feature extraction |
-| 3 | 📱 MobileNetV3Large | 224 × 224 | Top 30 | Lightweight and fast |
-| 4 | 🌿 DenseNet121 | 224 × 224 | Top 50 | Dense connections, less overfitting |
-| 5 | 🎯 InceptionV3 | 299 × 299 | Top 60 | Multi-scale feature extraction |
+| 1 | ⚡ EfficientNetB3 || Best accuracy / efficiency balance |
+| 2 | 🔷 ResNet50V2 || Strong residual feature extraction |
+| 3 | 📱 MobileNetV3Large || Lightweight and fast |
+| 4 | 🌿 DenseNet121 || Dense connections, less overfitting |
+| 5 | 🎯 InceptionV3 || Multi-scale feature extraction |
 
 </div>
 
@@ -198,9 +198,3 @@ http://127.0.0.1:5000
 - Always use `py -3.11` explicitly — running with Python 3.14 will fail
 
 ---
-
-<div align="center">
-
-Made with 🦋 and deep learning
-
-</div>
